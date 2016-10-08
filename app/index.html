@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="chatMod">
 <head>
     <meta charset="UTF-8">
     <title>珠峰聊天室</title>
@@ -20,10 +20,17 @@
             </div>
         </div>
     </nav>
+    <div class="container" ng-view>
+
+    </div>
 </div>
 <script src="/lib/jquery/dist/jquery.js"></script>
 <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/lib/angular/angular.js"></script>
 <script src="/lib/angular-route/angular-route.js"></script>
+<script src="app.js"></script>
+<script src="controllers/LoginCtrl.js"></script>
+<script src="controllers/RoomsCtrl.js"></script>
+<script src="controllers/RoomCtrl.js"></script>
 </body>
 </html>
