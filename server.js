@@ -49,4 +49,16 @@ app.get('/rooms',function(req,res){
         }
     });
 });
+//增加房间的路由
+app.post('/rooms',function(req,res){
+   var room = req.body;
+   Room.create(room,function(err,doc){
+       if(err){
+           res.send({err:1,msg:'增加房间出错',data:err});
+       }else{
+           //把保存成功之后的文档对象发回给客户端
+           res.send({err:0,msg:'成功',data:doc});
+       }
+   });
+});
 app.listen(9090);

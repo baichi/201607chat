@@ -25,7 +25,22 @@ angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScop
     /**
      * 增加房间
      * 1. 给增加房间按钮绑定点击事件ng-click,当点击的时候执行$scope上的createRoom方法
-     * 2. 在createRoom方法中获取到房间名($scope.keyword)，调用增加房间的后台接口，请求方法post 请求的URL /rooms/add  数据 data {name:$scope.keyword}
+     * 2. 在createRoom方法中获取到房间名($scope.keyword)，调用增加房间的后台接口，请求方法post 请求的URL /rooms  数据 data {name:$scope.keyword}
      * 3. 在服务器端编写/rooms/add路由，得到请求体对象，然后调用Room.create方法把此对象保存到数据库中，并返回保存后的房间对象
      */
+    $scope.createRoom = function(){
+        $http({
+            url:'/rooms',
+            method:'POST',
+            data:{name:$scope.keyword}
+        }).success(function(result){
+            if(result.err == 0){
+                //把保存成功之后的房间对象添加到房间列表数组中
+                $scope._rooms.push(result.data);
+                $scope.filter();
+            }else{
+                $rootScope.errorMsg = result.msg;
+            }
+        });
+    }
 });
