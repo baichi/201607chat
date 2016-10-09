@@ -14,8 +14,13 @@
                 <div class="navbar-brand">珠峰聊天室</div>
             </div>
             <div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="">头像:用户名</a></li>
+                <ul ng-show="user" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="">
+                            <img class="img-rounded" style="width:32px;height:32px;" ng-src="{{user.avatar}}" alt="">
+                            {{user.email}}
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

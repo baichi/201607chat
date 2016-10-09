@@ -24,7 +24,7 @@ app.post('/user/login',function(req,res){
           if(doc){
               res.send({err:0,msg:'成功',data:doc});
           }else{
-              user.avatar = 'https://secure.gravatar.com/avatar/email';
+              user.avatar = 'https://secure.gravatar.com/avatar/email?s=32';
               //保存此用户之后得到一个保存之后的文档 _id
               User.create(user,function(err,doc2){
                   if(err){
