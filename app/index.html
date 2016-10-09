@@ -25,6 +25,9 @@
             </div>
         </div>
     </nav>
+    <div ng-if="errorMsg" class="alert alert-danger">
+        {{errorMsg}}
+    </div>
     <div class="container" ng-view>
 
     </div>

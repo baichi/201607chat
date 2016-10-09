@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var config = require('../config');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 mongoose.connect(config.dbUrl);
 //定义用户的数据结构骨架
 var UserSchema = new mongoose.Schema({
