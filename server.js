@@ -74,5 +74,17 @@ app.get('/rooms/:id',function(req,res){
         }
     })
 });
-
-app.listen(9090);
+var server = require('http').createServer(app);
+/**
+ * 监听客户端的socket.io请求
+ */
+var io = require('socket.io')(server);
+io.on('connection',function(socket){
+  //接到某个客户端的消息后，二话不说广播给所有人{user:字符串,content:字符串}
+  socket.on('message',function(msgObj){
+     msgObj.createAt = new Date();
+      console.log(msgObj);
+     io.emit('message',msgObj);
+  });
+});
+server.listen(9090);
