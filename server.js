@@ -63,4 +63,16 @@ app.post('/rooms',function(req,res){
        }
    });
 });
+//查询单个房间
+app.get('/rooms/:id',function(req,res){
+    Room.findById(req.params.id,function(err,room){
+        if(err){
+            res.send({err:1,msg:'查询房间出错',data:err});
+        }else{
+            //把保存成功之后的文档对象发回给客户端
+            res.send({err:0,msg:'成功',data:room});
+        }
+    })
+});
+
 app.listen(9090);
