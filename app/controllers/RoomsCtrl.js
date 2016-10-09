@@ -1,5 +1,5 @@
 angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScope){
-   $scope.rooms = [];
+   $scope.rooms = $scope._rooms = [];
     /**
      * 1. 在控制器里立刻调用后台接口 get /rooms，获取房间列表
      * 2. 服务器端要实现 get /rooms这个路由，
@@ -10,10 +10,16 @@ angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScop
         url:'/rooms',
         method:'GET',
     }).success(function(result){
-       if(result.err==0){//如果没有出错，就把返回来的房间数组赋给$scope.rooms属性
-           $scope.rooms = result.data;
+       if(result.err==0){//如果没有出错，就把返回来的房间数组赋给$scope.rooms属性 _rooms放过滤前的数组 rooms放过滤后的数组
+           $scope.rooms = $scope._rooms= result.data;
        }else{
           $rootScope.errorMsg = result.msg;
        }
     });
+    $scope.filter = function(){
+        var keyword = $scope.keyword;
+        $scope.rooms = $scope._rooms.filter(function(item){
+            return item.name.indexOf(keyword)!=-1;
+        });
+    }
 });
