@@ -52,6 +52,8 @@ app.get('/rooms',function(req,res){
 //增加房间的路由
 app.post('/rooms',function(req,res){
    var room = req.body;
+   //设置在线人数和本房间内的消息列表都是空数组
+   room.users = room.messsages =  [];
    Room.create(room,function(err,doc){
        if(err){
            res.send({err:1,msg:'增加房间出错',data:err});

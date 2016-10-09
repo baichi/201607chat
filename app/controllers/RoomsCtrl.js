@@ -43,4 +43,9 @@ angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScop
             }
         });
     }
+    /**
+     * 点击房间名的时候要进入某个房间的聊天界面
+     * 1. 给名字所在的DOM元素增加ng-click事件
+     * 2. 在事件函数里要跳转到聊天页面 /rooms/:roomId
+     */
 });
