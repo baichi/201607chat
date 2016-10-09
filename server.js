@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var User = require('./db').User;
+var Room = require('./db').Room;
 var app = express();
 app.get('/',function(req,res){
     res.sendFile(path.resolve('app/index.html'));
@@ -36,5 +37,16 @@ app.post('/user/login',function(req,res){
           }
       }
     })
+});
+//编写获取房间列表的接口 也就是路由 当客户端get /rooms路径发起请求的时候
+app.get('/rooms',function(req,res){
+    //调用Model的find方法查询所有的房间 条件为空
+    Room.find({},function(err,rooms){//返回一个房间对象的数组
+        if(err){
+            res.send({err:1,msg:'查询出错',data:err});
+        }else{
+            res.send({err:0,msg:'成功',data:rooms});
+        }
+    });
 });
 app.listen(9090);
