@@ -24,7 +24,7 @@ angular.module('chatMod').controller('RoomCtrl', function ($routeParams, $http, 
      * 2. 在前台连接后台的socket.io服务器
      * 3.在前台发送消息给后台，后台保存到当前房间里messages数组中，并且通过所有的客户端添加此消息
      */
-    var socket = io.connect('ws://localhost:9090');
+    var socket = io.connect(`ws://${window.location.host}/`);
     socket.on('message', function (msgObj) {
         console.log(msgObj);
         $scope.room.messages.push(msgObj);
