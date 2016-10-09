@@ -1,4 +1,4 @@
-angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScope){
+angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScope,$location){
    $scope.rooms = $scope._rooms = [];
     /**
      * 1. 在控制器里立刻调用后台接口 get /rooms，获取房间列表
@@ -48,4 +48,7 @@ angular.module('chatMod').controller('RoomsCtrl',function($scope,$http,$rootScop
      * 1. 给名字所在的DOM元素增加ng-click事件
      * 2. 在事件函数里要跳转到聊天页面 /rooms/:roomId
      */
+    $scope.gogogo = function(_id){
+        $location.path('/rooms/'+_id);
+    }
 });

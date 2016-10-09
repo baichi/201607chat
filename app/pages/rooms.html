@@ -6,7 +6,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-3" ng-repeat="room in rooms track by $index">
-                <div class="panel panel-default">
+                <div ng-click="gogogo(room._id)" class="panel panel-default">
                     <div class="panel-body">
                         <h3 class="text-center">{{room.name}}</h3>
                     </div>
